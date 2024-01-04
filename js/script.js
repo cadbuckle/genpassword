@@ -91,20 +91,16 @@ var upperCasedCharacters = [
 // useable array based upon selected character options
 var useableCharacters = [];
 
+// variable for user selected number of characters
+var numChar = 0;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-  //    Prompt Length of password
-  //      At least 8 characters but no more than 128.
-  //    Prompt Character types
-  //      Lowercase y/n
-  //      Uppercase y/n
-  //      Numeric y/n
-  //      Special characters ($@%&*, etc) y/n
-  //    Code should validate for each input and at least one character type should be selected
+  
+  // Confirm that user wants to generate a password
   let goPass = confirm("Do you wish to generate a password?");
   if (goPass) {
     // Prompt user for password options
-    let numChar = 0;
     let numCharValid = false;
     let optValid = false;
     let optLower = false;
@@ -135,7 +131,7 @@ function getPasswordOptions() {
       }
     }
 
-    // build array of characters available to password based upon user selection
+    // build array of useable characters available for the password based upon user selection
     if (optLower ) {
       useableCharacters = useableCharacters.concat(lowerCasedCharacters);
     };
@@ -152,11 +148,23 @@ function getPasswordOptions() {
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {}
+function getRandom(arr) {
+  // initialise local variable to hold all selected characters.
+  let builtPassword = "";
+
+  // Iterate a loop <numChar> times to select a randamon useable character
+  for (let a = 1; a <= numChar; a++) {
+    let randomCharacter = arr[Math.floor(Math.random() * arr.length)];
+    builtPassword += randomCharacter;
+  }
+  return (builtPassword)
+}
 
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions();
+  var thePassword = getRandom(useableCharacters);
+  console.log("thePassword is : "+thePassword);
 }
 
 // Get references to the #generate element
