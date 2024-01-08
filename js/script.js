@@ -66,10 +66,12 @@ function getPasswordOptions() {
     // build array of useable characters available for the password based upon user selection
     // add lowercase characters if selected
     if (optLower) {
+      // concat'ed twice to increase the chances of lowercase letters in password (over numbers and specials)
       useableCharacters = useableCharacters.concat(lowerCasedCharacters,lowerCasedCharacters);
     }
     // add uppercase characters if selected
     if (optUpper) {
+      // concat'ed twice to increase the chances of uppercase letters in password (over numbers and specials)
       useableCharacters = useableCharacters.concat(upperCasedCharacters,upperCasedCharacters);
     }
     // add numerics if selected
@@ -97,7 +99,7 @@ function getRandom() {
   }
   
   //
-  // validation for at least one of each selected option in the final password?
+  // For gen 2: validation for at least one of each selected option in the final password?
   //
   
   // return local variable containing random characters
